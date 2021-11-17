@@ -1,19 +1,18 @@
 class Solution {
 public:
-    int firstMissingPositive(vector<int>& A) {
-            for(int i=0;i<A.size();i++)
+    void rotate(vector<vector<int>>& a) {
+        int n = a.size();
+        for(int i =0;i<n;i++)
         {
-            if(A[i]!=i+1 && A[i]>0 && A[i]<A.size() && A[A[i]-1]!=A[i])
+            for(int j=0;j<i;j++)
             {
-                swap(A[i],A[A[i]-1]);
-                i--;
-             }
-         }
-        for(int i=1;i<A.size()+1;i++)
-        {
-            if(A[i-1]!=i)
-                return i;
+                swap(a[i][j],a[j][i]);
+            }
         }
-        return A.size()+1;   
+        
+        for(int i=0;i<n;i++)
+        {
+            reverse(a[i].begin(),a[i].end());
+        }
     }
 };
