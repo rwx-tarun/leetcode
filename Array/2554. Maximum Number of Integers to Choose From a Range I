@@ -1,0 +1,25 @@
+- Brute force - 2 loops find the element in array 2 
+- nlogn - BS instead of second loop 
+- O(n) - Map 
+
+
+    int maxCount(vector<int>& banned, int n, int maxSum) {
+        unordered_map<int,int>mp;
+        for(int x:banned){
+            mp[x]++;
+        }
+        int cnt = 0;
+        int sm =0;
+        for(int i=1;i<=n;i++){
+            if(sm+i > maxSum){
+                break;
+            }else if(mp.find(i) == mp.end()){
+                sm = sm + i;
+                cnt++;
+            }
+        }
+        // [1,6,5]
+        // sm = 1
+        // mx = 5
+        return cnt;
+    }
